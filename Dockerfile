@@ -7,7 +7,7 @@ FROM centos:7
 MAINTAINER Joel Heenan "joelh@planetjoel.com"
 RUN yum -y update
 RUN yum -y install epel-release
-RUN yum -y install which git vim mlocate curl sudo unzip file python-devel python-pip python34 python34-devel wget bind-utils gnupg2
+RUN yum -y install which git vim mlocate curl sudo unzip file python-devel python-pip python34 python34-devel wget bind-utils gnupg2 ruby ruby-devel rubygems
  
 # Create a user for use in the image that aligns with the UID on my mac.
 # Ensure it has sudo root access
@@ -33,6 +33,9 @@ WORKDIR /var/tmp/awscli-bundle/
 RUN /var/tmp/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 RUN rm -f /var/tmp/awscli-bundle.zip
 RUN rm -rf /var/tmp/awscli-bundle
+
+# Common Gems
+RUN gem install aws-sdk
  
 WORKDIR /
  
